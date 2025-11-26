@@ -26,20 +26,17 @@ require("lazy").setup({
       })
     end,
    },
-
-
-
-     -- Mini indentscope for animations
-     {
-       "echasnovski/mini.indentscope",
-       version = false,
-       config = function()
-         require("mini.indentscope").setup({
-           symbol = "│",
-           options = { try_as_border = false },
-         })
-       end,
-     },
+      -- Mini indentscope for animations
+      {
+        "echasnovski/mini.indentscope",
+        version = false,
+        config = function()
+          require("mini.indentscope").setup({
+            symbol = "│",
+            options = { try_as_border = false },
+          })
+        end,
+      },
 
      -- Catppuccin theme
   {
@@ -96,36 +93,89 @@ require("lazy").setup({
     end,
   },
 
-  -- Alpha dashboard
+  -- ToggleTerm for terminal support
   {
-    "goolord/alpha-nvim",
+    "akinsho/toggleterm.nvim",
+    version = "*",
     config = function()
-      local alpha = require("alpha")
-      local dashboard = require("alpha.themes.dashboard")
-
-      -- Custom banner
-      dashboard.section.header.val = {
-        " ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗",
-        " ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║",
-        " ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║",
-        " ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║",
-        " ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║",
-        " ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝",
-        "",
-        "built with love and ai",
-        " -- ijadux2",
-      }
-
-      dashboard.section.buttons.val = {
-        dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button("f", "󰈞  Find file", ":Telescope find_files<CR>"),
-        dashboard.button("r", "  Recent files", ":Telescope oldfiles<CR>"),
-        dashboard.button("s", "  Settings", ":e $MYVIMRC<CR>"),
-        dashboard.button("q", "󰅚  Quit", ":qa<CR>"),
-      }
-
-      alpha.setup(dashboard.opts)
+      require("toggleterm").setup()
     end,
+  },
+
+  -- Todo comments
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+
+  -- Nvim notify
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify")
+    end,
+  },
+
+  -- Bufferline for tab-like buffer management
+
+
+  -- Snacks dashboard
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      dashboard = {
+        enabled = true,
+        preset = {
+          header = [[
+ ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+ ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+ ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+ ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+ ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+ ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+
+Wake up to reality !
+ -- ijadux2
+          ]],
+          keys = {
+            { icon = " ", key = "e", desc = "New file", action = ":ene | startinsert" },
+            { icon = "󰈞 ", key = "f", desc = "Find file", action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = " ", key = "r", desc = "Recent files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            { icon = " ", key = "s", desc = "Settings", action = ":e $MYVIMRC" },
+            { icon = "󰅚 ", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "startup" },
+        },
+        animate = {
+          enabled = true,
+          fps = 30,
+          easing = "outCubic",
+        },
+      },
+      picker = {
+        enabled = true,
+      },
+      notifier = {
+        enabled = true,
+        timeout = 3000,
+        style = "fancy",
+        icons = {
+          error = "",
+          warn = "",
+          info = "",
+          debug = "",
+          trace = "",
+        },
+        top_down = false,
+      },
+    },
   },
 
   -- Telescope for fuzzy finding (used in dashboard)
@@ -288,3 +338,9 @@ vim.opt.guifont = "JetBrainsMono Nerd Font:h15"
 vim.opt.cursorline = true
 vim.opt.pumblend = 50 -- blur for nvim
 vim.opt.winblend = 50  -- blur for nvim as window
+
+-- Keybindings
+vim.keymap.set("n", "<leader><leader>", ":Telescope find_files<CR>")
+vim.keymap.set("n", "<leader>t", ":ToggleTerm<CR>")
+
+

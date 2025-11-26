@@ -2,6 +2,10 @@
 
 A modern, feature-rich Neovim configuration with Lazy as the package manager, Catppuccin Mocha theme, and comprehensive tooling for development.
 
+## Preview
+
+![Screenshot](screenshot_20251126_204707.png)
+
 ## Features
 
 - **Package Manager**: Lazy.nvim for efficient plugin management

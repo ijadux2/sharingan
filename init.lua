@@ -136,8 +136,9 @@ require("lazy").setup({
 ▐█▌▐▌▐█▌▐█ ▪▐▌██. ██ ▐█▄█▌▪▐█·█▌
 ▀▀▀ ▀▀▀• ▀  ▀ ▀▀▀▀▀•  ▀▀▀ •▀▀ ▀▀
 
-Wake up to reality !
- -- ijadux2
+
+1. Would you rather die for your enemies or live for yourself?
+           -- Madara Uchiha
           ]],
 					keys = {
 						{ icon = " ", key = "n", desc = "New file", action = ":ene | startinsert" },
@@ -155,6 +156,7 @@ Wake up to reality !
 						},
 						{ icon = " ", key = "s", desc = "Settings", action = ":e $MYVIMRC" },
 						{ icon = "󰅚 ", key = "q", desc = "Quit", action = ":qa" },
+						{ icon = " ", key = "l", desc = "lazy", action = ":Lazy" },
 					},
 				},
 				sections = {
@@ -366,7 +368,7 @@ vim.opt.cursorline = true
 vim.opt.pumblend = 50 -- blur for nvim
 vim.opt.winblend = 50 -- blur for nvim as window
 vim.opt.showtabline = 0
-
+vim.opt.linebreak = true
 -- Keybindings
 vim.keymap.set("n", "<leader><leader>", ":Telescope find_files<CR>")
 vim.keymap.set("n", "<leader>t", ":ToggleTerm<CR>")

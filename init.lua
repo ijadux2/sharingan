@@ -68,17 +68,78 @@ require("lazy").setup({
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("nvim-tree").setup({
+				disable_netrw = true,
+				hijack_netrw = true,
+				view = {
+					width = 35,
+					side = "left",
+				},
 				renderer = {
+					indent_width = 2,
 					indent_markers = {
 						enable = true,
+						inline_arrows = true,
+						icons = {
+							corner = "└",
+							edge = "│",
+							item = "│",
+							bottom = "─",
+							none = " ",
+						},
 					},
+					root_folder_label = false,
+					highlight_git = true,
+					highlight_opened_files = "name",
+					special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "package.json" },
 					icons = {
+						webdev_colors = true,
+						git_placement = "before",
+						modified_placement = "after",
 						show = {
 							file = true,
 							folder = true,
 							folder_arrow = true,
-							git = false,
+							git = true,
+							modified = true,
 						},
+						glyphs = {
+							default = "󰈚",
+							symlink = "",
+							bookmark = "󰆤",
+							modified = "●",
+							folder = {
+								arrow_closed = "",
+								arrow_open = "",
+								default = "",
+								open = "",
+								empty = "",
+								empty_open = "",
+								symlink = "",
+								symlink_open = "",
+							},
+							git = {
+								unstaged = "✗",
+								staged = "✓",
+								unmerged = "",
+								renamed = "➜",
+								untracked = "★",
+								deleted = "",
+								ignored = "◌",
+							},
+						},
+					},
+				},
+				filters = {
+					dotfiles = false,
+					custom = { ".git" },
+				},
+				git = {
+					enable = true,
+					ignore = false,
+				},
+				actions = {
+					open_file = {
+						quit_on_open = false,
 					},
 				},
 			})
@@ -99,7 +160,117 @@ require("lazy").setup({
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {},
+		config = function()
+			require("todo-comments").setup({
+				signs = true,
+				sign_priority = 8,
+				keywords = {
+					FIX = {
+						icon = " ",
+						color = "error",
+						alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+					},
+					TODO = {
+						icon = " ",
+						color = "info",
+					},
+					HACK = {
+						icon = " ",
+						color = "warning",
+					},
+					WARN = {
+						icon = " ",
+						color = "warning",
+						alt = { "WARNING", "XXX" },
+					},
+					PERF = {
+						icon = "󰅒 ",
+						color = "default",
+						alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" },
+					},
+					NOTE = {
+						icon = "󰍨 ",
+						color = "hint",
+						alt = { "INFO" },
+					},
+					TEST = {
+						icon = "󰙨 ",
+						color = "test",
+						alt = { "TESTING", "PASSED", "FAILED" },
+					},
+					DEPRECATED = {
+						icon = " ",
+						color = "warning",
+						alt = { "DEPRECATED" },
+					},
+					SECURITY = {
+						icon = "󰒃 ",
+						color = "error",
+						alt = { "SECURITY", "VULN", "VULNERABILITY" },
+					},
+					DOC = {
+						icon = "󰈙 ",
+						color = "hint",
+						alt = { "DOCS", "DOCUMENTATION" },
+					},
+					REFACTOR = {
+						icon = "󰑖 ",
+						color = "info",
+						alt = { "REFACTOR", "CLEANUP" },
+					},
+					COMMENT = {
+						icon = "󰆉 ",
+						color = "default",
+						alt = { "COMMENT" },
+					},
+				},
+				gui_style = {
+					fg = "BOLD",
+					bg = "BOLD",
+				},
+				merge_keywords = true,
+				highlight = {
+					multiline = true,
+					multiline_pattern = "^.",
+					multiline_context = 10,
+					before = "",
+					keyword = "wide",
+					after = "fg",
+					pattern = [[.*<(KEYWORDS)\s*:]],
+					comments_only = true,
+					max_line_len = 400,
+					exclude = {},
+				},
+				colors = {
+					error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+					warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+					info = { "DiagnosticInfo", "#2563EB" },
+					hint = { "DiagnosticHint", "#10B981" },
+					default = { "Identifier", "#7C3AED" },
+					test = { "Identifier", "#FF00FF" },
+				},
+				search = {
+					command = "rg",
+					args = {
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+					},
+					pattern = [[(KEYWORDS):]],
+				},
+			})
+			-- Set up keybindings for todo-comments
+			vim.keymap.set("n", "<leader>td", ":TodoTelescope<CR>", { desc = "Todo Telescope" })
+			vim.keymap.set("n", "<leader>tq", ":TodoQuickFix<CR>", { desc = "Todo QuickFix" })
+			vim.keymap.set("n", "]t", function()
+				require("todo-comments").jump_next()
+			end, { desc = "Next todo comment" })
+			vim.keymap.set("n", "[t", function()
+				require("todo-comments").jump_prev()
+			end, { desc = "Previous todo comment" })
+		end,
 	},
 
 	-- Nvim notify
@@ -107,21 +278,119 @@ require("lazy").setup({
 		"rcarriga/nvim-notify",
 		config = function()
 			require("notify").setup({
-				stages = "fade_in_slide_out",
+				-- Animation style
+				stages = "fade",
+				-- Default timeout
 				timeout = 3000,
+				-- Max width for messages
+				max_width = 50,
+				-- Max height for messages
+				max_height = 10,
+				-- Render function
+				render = "compact",
+				-- Icons for notification levels
 				icons = {
-					ERROR = "",
-					WARN = "",
-					INFO = "",
-					DEBUG = "",
-					TRACE = "",
+					ERROR = "",
+					WARN = "",
+					INFO = "",
+					DEBUG = "",
+					TRACE = "󰆉",
 				},
+				-- Notification placement
+				top_down = true,
+				-- Minimum width
+				minimum_width = 30,
+				-- Background opacity
+				background_colour = "#000000",
+				-- FPS for animations
+				fps = 60,
+				-- Level-specific timeouts
+				level = vim.log.levels.INFO,
+				-- on_open callback
+				on_open = function(win)
+					vim.api.nvim_win_set_config(win, { border = "rounded" })
+				end,
 			})
 			vim.notify = require("notify")
+			-- Keybinding to dismiss all notifications
+			vim.keymap.set("n", "<leader>nd", function()
+				require("notify").dismiss({ silent = true, pending = true })
+			end, { desc = "Dismiss notifications" })
 		end,
 	},
-
 	-- Bufferline for tab-like buffer management
+	{
+		"akinsho/bufferline.nvim",
+		version = "*",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("bufferline").setup({
+				options = {
+					mode = "buffers",
+					themable = true,
+					style_preset = {
+						require("bufferline").style_preset.no_italic,
+						require("bufferline").style_preset.no_bold,
+					},
+					indicator = {
+						icon = "▎",
+						style = "icon",
+					},
+					buffer_close_icon = "󰅖",
+					modified_icon = "●",
+					close_icon = "",
+					left_trunc_marker = "",
+					right_trunc_marker = "",
+					max_name_length = 18,
+					max_prefix_length = 15,
+					tab_size = 18,
+					diagnostics = "nvim_lsp",
+					diagnostics_update_in_insert = false,
+					diagnostics_indicator = function(count, level)
+						local icon = ""
+						if type(level) == "string" and level:match("error") then
+							icon = ""
+						elseif type(level) == "string" and level:match("warning") then
+							icon = ""
+						end
+						return " " .. icon .. " " .. count
+					end,
+					offsets = {
+						{
+							filetype = "NvimTree",
+							text = "File Explorer",
+							text_align = "center",
+							separator = true,
+						},
+					},
+					color_icons = true,
+					show_buffer_icons = true,
+					show_buffer_close_icons = true,
+					show_close_icon = false,
+					show_tab_indicators = true,
+					show_duplicate_prefix = true,
+					persist_buffer_sort = true,
+					separator_style = "thin",
+					enforce_regular_tabs = false,
+					always_show_bufferline = true,
+					sort_by = "insert_after_current",
+				},
+				highlights = (function()
+					local ok, cat = pcall(require, "catppuccin.groups.integrations.bufferline")
+					return ok and cat.get() or {}
+				end)(),
+			})
+			-- Keybindings for buffer navigation
+			vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", { silent = true })
+			vim.keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", { silent = true })
+			vim.keymap.set("n", "<leader>bp", ":BufferLineTogglePin<CR>", { desc = "Pin buffer" })
+			vim.keymap.set("n", "<leader>bc", ":BufferLinePickClose<CR>", { desc = "Pick buffer to close" })
+			vim.keymap.set("n", "<leader>bse", ":BufferLineSortByExtension<CR>", { desc = "Sort by extension" })
+			vim.keymap.set("n", "<leader>bsd", ":BufferLineSortByDirectory<CR>", { desc = "Sort by directory" })
+			-- Close buffer without closing window
+			vim.keymap.set("n", "<leader>bd", ":bp|bd #<CR>", { silent = true, desc = "Close buffer" })
+		end,
+	},
 
 	-- Snacks dashboard
 	{
@@ -231,15 +500,18 @@ Where illusions meet relaity !
 			"hrsh7th/cmp-cmdline",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"onsails/lspkind.nvim",
 			"ray-x/cmp-treesitter",
 		},
 		config = function()
 			local cmp = require("cmp")
+			local luasnip = require("luasnip")
+
 			cmp.setup({
 				snippet = {
 					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
+						luasnip.lsp_expand(args.body)
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
@@ -248,32 +520,102 @@ Where illusions meet relaity !
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					-- Arrow keys for navigation
+					["<Down>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<Up>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					-- Tab for snippet expansion
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
 				}),
 				formatting = {
 					format = require("lspkind").cmp_format({
 						mode = "symbol_text",
 						maxwidth = 50,
 						ellipsis_char = "...",
+						show_labelDetails = true,
 					}),
 				},
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
+				},
+				completion = {
+					keyword_length = 1,
+					completeopt = "menu,menuone,noinsert",
+				},
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
-					{ name = "treesitter" },
+					{ name = "nvim_lsp", priority = 1000 },
+					{ name = "nvim_lsp_signature_help", priority = 900 },
+					{ name = "luasnip", priority = 800 },
+					{ name = "treesitter", priority = 700 },
+					{ name = "path", priority = 600 },
 				}, {
+					{ name = "buffer", keyword_length = 3, priority = 500 },
+				}),
+				experimental = {
+					ghost_text = true,
+				},
+			})
+
+			-- Cmdline completion for searching
+			cmp.setup.cmdline("/", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
 					{ name = "buffer" },
+				},
+			})
+
+			-- Cmdline completion for commands
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
 					{ name = "path" },
+				}, {
+					{ name = "cmdline" },
 				}),
 			})
 		end,
 	},
-
 	-- Snippets
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = { "rafamadriz/friendly-snippets" },
 		config = function()
+			local luasnip = require("luasnip")
+			-- Load VSCode-style snippets
 			require("luasnip.loaders.from_vscode").lazy_load()
+			-- Load snippets from snipmate format
+			require("luasnip.loaders.from_snipmate").lazy_load()
+			-- LuaSnip configuration
+			luasnip.config.set_config({
+				history = true,
+				update_events = "TextChanged,TextChangedI",
+				enable_autosnippets = true,
+			})
 		end,
 	},
 
@@ -298,19 +640,32 @@ Where illusions meet relaity !
 		end,
 	},
 	{
+		"neovim/nvim-lspconfig",
+		dependencies = { "williamboman/mason-lspconfig.nvim" },
+	},
+	{
 		"williamboman/mason-lspconfig.nvim",
 		version = "*",
 		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- Enable snippet support
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
+			capabilities.textDocument.completion.completionItem.resolveSupport = {
+				properties = {
+					"documentation",
+					"detail",
+					"additionalTextEdits",
+				},
+			}
+
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "pyright", "zls", "nil_ls", "html" },
+				ensure_installed = { "lua_ls", "pyright", "zls", "nil_ls", "html", "mesonlsp" },
 				automatic_installation = true,
 				handlers = {
 					function(server_name)
-						local capabilities = require("cmp_nvim_lsp").default_capabilities()
 						require("lspconfig")[server_name].setup({ capabilities = capabilities })
 					end,
 					lua_ls = function()
-						local capabilities = require("cmp_nvim_lsp").default_capabilities()
 						require("lspconfig").lua_ls.setup({
 							capabilities = capabilities,
 							settings = {
@@ -325,6 +680,13 @@ Where illusions meet relaity !
 									},
 								},
 							},
+						})
+					end,
+					mesonlsp = function()
+						require("lspconfig").mesonlsp.setup({
+							capabilities = capabilities,
+							filetypes = { "meson" },
+							root_dir = require("lspconfig").util.root_pattern("meson.build", "meson_options.txt"),
 						})
 					end,
 				},

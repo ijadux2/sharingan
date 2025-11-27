@@ -179,6 +179,7 @@ Wake up to reality !
     },
   },
 
+
   -- Telescope for fuzzy finding (used in dashboard)
   {
     "nvim-telescope/telescope.nvim",
@@ -188,8 +189,8 @@ Wake up to reality !
   -- Web devicons for icons
   "nvim-tree/nvim-web-devicons",
 
-  --coc.nvim 
-   'neoclide/coc.nvim',
+  --mini.ai 
+  'nvim-mini/mini.ai', version = '*',
 
   -- Which-key for command palette
   {

@@ -38,6 +38,7 @@ require("lazy").setup({
         transparent_background = true,
         integrations = {
           nvimtree = true,
+          notify = true,
         },
       })
       vim.cmd.colorscheme("catppuccin-mocha")
@@ -105,7 +106,6 @@ require("lazy").setup({
       require("notify").setup({
         stages = "fade_in_slide_out",
         timeout = 3000,
-        background_colour = "#1e1e2e",
         icons = {
           ERROR = "",
           WARN = "",

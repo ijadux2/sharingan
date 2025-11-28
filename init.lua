@@ -20,7 +20,7 @@ require("lazy").setup({
 		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "lua", "python", "zig", "nix", "nu", "bash", "fish", "html" },
+				ensure_installed = { "lua", "python", "zig", "nix", "nu", "bash", "fish", "html", "css" },
 				highlight = { enable = true },
 				indent = { enable = true },
 			})
@@ -318,80 +318,6 @@ require("lazy").setup({
 			end, { desc = "Dismiss notifications" })
 		end,
 	},
-	-- Bufferline for tab-like buffer management
-	{
-		"akinsho/bufferline.nvim",
-		version = "*",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function()
-			require("bufferline").setup({
-				options = {
-					mode = "buffers",
-					themable = true,
-					style_preset = {
-						require("bufferline").style_preset.no_italic,
-						require("bufferline").style_preset.no_bold,
-					},
-					indicator = {
-						icon = "▎",
-						style = "icon",
-					},
-					buffer_close_icon = "󰅖",
-					modified_icon = "●",
-					close_icon = "",
-					left_trunc_marker = "",
-					right_trunc_marker = "",
-					max_name_length = 18,
-					max_prefix_length = 15,
-					tab_size = 18,
-					diagnostics = "nvim_lsp",
-					diagnostics_update_in_insert = false,
-					diagnostics_indicator = function(count, level)
-						local icon = ""
-						if type(level) == "string" and level:match("error") then
-							icon = ""
-						elseif type(level) == "string" and level:match("warning") then
-							icon = ""
-						end
-						return " " .. icon .. " " .. count
-					end,
-					offsets = {
-						{
-							filetype = "NvimTree",
-							text = "File Explorer",
-							text_align = "center",
-							separator = true,
-						},
-					},
-					color_icons = true,
-					show_buffer_icons = true,
-					show_buffer_close_icons = true,
-					show_close_icon = false,
-					show_tab_indicators = true,
-					show_duplicate_prefix = true,
-					persist_buffer_sort = true,
-					separator_style = "thin",
-					enforce_regular_tabs = false,
-					always_show_bufferline = true,
-					sort_by = "insert_after_current",
-				},
-				highlights = (function()
-					local ok, cat = pcall(require, "catppuccin.groups.integrations.bufferline")
-					return ok and cat.get() or {}
-				end)(),
-			})
-			-- Keybindings for buffer navigation
-			vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", { silent = true })
-			vim.keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", { silent = true })
-			vim.keymap.set("n", "<leader>bp", ":BufferLineTogglePin<CR>", { desc = "Pin buffer" })
-			vim.keymap.set("n", "<leader>bc", ":BufferLinePickClose<CR>", { desc = "Pick buffer to close" })
-			vim.keymap.set("n", "<leader>bse", ":BufferLineSortByExtension<CR>", { desc = "Sort by extension" })
-			vim.keymap.set("n", "<leader>bsd", ":BufferLineSortByDirectory<CR>", { desc = "Sort by directory" })
-			-- Close buffer without closing window
-			vim.keymap.set("n", "<leader>bd", ":bp|bd #<CR>", { silent = true, desc = "Close buffer" })
-		end,
-	},
-
 	-- Snacks dashboard
 	{
 		"folke/snacks.nvim",
@@ -402,15 +328,18 @@ require("lazy").setup({
 				enabled = true,
 				preset = {
 					header = [[
- ▪   ▐▄▄▄ ▄▄▄· ·▄▄▄▄  ▄• ▄▌▐▄• ▄ 
-██   ·██▐█ ▀█ ██▪ ██ █▪██▌ █▌█▌▪
-▐█·▪▄ ██▄█▀▀█ ▐█· ▐█▌█▌▐█▌ ·██· 
-▐█▌▐▌▐█▌▐█ ▪▐▌██. ██ ▐█▄█▌▪▐█·█▌
-▀▀▀ ▀▀▀• ▀  ▀ ▀▀▀▀▀•  ▀▀▀ •▀▀ ▀▀
-
-Where illusions meet relaity !
-           -- ijadux2
-          ]],
+ ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓
+ ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒
+▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░
+▓██▒  ▐▌██▒▒▓█  ▄ ▒██   ██░  ▒██ █░░░██░▒██    ▒██ 
+▒██░   ▓██░░▒████▒░ ████▓▒░   ▒▀█░  ░██░▒██▒   ░██▒
+░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒░▒░▒░    ░ ▐░  ░▓  ░ ▒░   ░  ░
+░ ░░   ░ ▒░ ░ ░  ░  ░ ▒ ▒░    ░ ░░   ▒ ░░  ░      ░
+   ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░   
+         ░    ░  ░    ░ ░        ░   ░         ░   
+                                ░                  
+-- ijadux2
+]],
 					keys = {
 						{ icon = " ", key = "n", desc = "New file", action = ":ene | startinsert" },
 						{
@@ -569,12 +498,12 @@ Where illusions meet relaity !
 				},
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp", priority = 1000 },
-					{ name = "nvim_lsp_signature_help", priority = 900 },
-					{ name = "luasnip", priority = 800 },
+					{ name = "nvim_lsp_signature_help", priority = 800 },
+					{ name = "luasnip", priority = 900 },
 					{ name = "treesitter", priority = 700 },
-					{ name = "path", priority = 600 },
+					{ name = "path", priority = 550 },
 				}, {
-					{ name = "buffer", keyword_length = 3, priority = 500 },
+					{ name = "buffer", keyword_length = 0, priority = 650 },
 				}),
 				experimental = {
 					ghost_text = true,
@@ -731,7 +660,7 @@ vim.opt.guifont = "JetBrainsMono Nerd Font:h15"
 vim.opt.cursorline = true
 vim.opt.pumblend = 50 -- blur for nvim
 vim.opt.winblend = 50 -- blur for nvim as window
-vim.opt.showtabline = 0
+vim.opt.showtabline = 2
 vim.opt.linebreak = true
 -- Keybindings
 vim.keymap.set("n", "<leader><leader>", ":Telescope find_files<CR>")

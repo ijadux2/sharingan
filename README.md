@@ -13,13 +13,51 @@ nvim-for-me/
 │   ├── init.lua          # Entry point
 │   ├── lua/
 │   │   ├── config/       # Core configuration files
+│   │   │   ├── autocmds.lua
+│   │   │   ├── keymaps.lua
+│   │   │   ├── lazy.lua
+│   │   │   └── options.lua
 │   │   └── plugins/      # Plugin configurations
+│   │       ├── catppuccin.lua
+│   │       ├── lsp.lua
+│   │       ├── lualine.lua
+│   │       ├── mason.lua
+│   │       ├── snacks.lua
+│   │       ├── treesitter.lua
+│   │       └── ...
 │   ├── README.md         # Detailed LazyVim README
 │   └── ...
-└── standalone/           # Minimal standalone configuration
-    ├── init.lua         # Complete configuration in one file
-    ├── nvim.lua         # Alternative entry point
-    └── lazy-lock.json   # Plugin lockfile
+└── standalone/           # Modular standalone configuration
+    ├── init.lua         # Entry point with core setup
+    ├── lua/
+    │   ├── core/        # Core configuration
+    │   │   ├── keymaps.lua
+    │   │   └── options.lua
+    │   └── plugins/     # Individual plugin configs
+    │       ├── autopairs.lua
+    │       ├── bufferline.lua
+    │       ├── catppuccin.lua
+    │       ├── cmp.lua
+    │       ├── comment.lua
+    │       ├── conform.lua
+    │       ├── gitsigns.lua
+    │       ├── indent-blankline.lua
+    │       ├── lazydev.lua
+    │       ├── lint.lua
+    │       ├── love2d.lua
+    │       ├── lspconfig.lua
+    │       ├── lualine.lua
+    │       ├── luasnip.lua
+    │       ├── markdown.lua
+    │       ├── mason.lua
+    │       ├── mason-lspconfig.lua
+    │       ├── mini.lua
+    │       ├── noice.lua
+    │       ├── nvim-tree.lua
+    │       ├── snacks.lua
+    │       └── treesitter.lua
+    ├── keybind.md        # Keybinding documentation
+    └── lazy-lock.json    # Plugin lockfile
 ```
 
 ## 🔧 Configurations
@@ -36,18 +74,25 @@ Built on top of [LazyVim](https://github.com/LazyVim/LazyVim) with extensive cus
 **Installation**: See [lazyvim_base/README.md](./lazyvim_base/README.md)
 
 ### Standalone
-A minimal, single-file configuration perfect for:
+A modular, well-organized configuration perfect for:
 
 - Quick setups on new machines
-- Learning Neovim configuration
-- Lightweight editing environments
+- Learning Neovim configuration structure
+- Customizable editing environments
+- Understanding plugin management
 
 **Features**:
+- Modular architecture with separate config files
 - Essential plugins (Treesitter, LSP, completion)
-- Catppuccin theme
-- Basic LSP support
+- Catppuccin theme with multiple variants
+- Full LSP support with Mason
 - File explorer (NvimTree)
-- LÖVE2D support
+- LÖVE2D game development support
+- Advanced UI components (bufferline, lualine, noice)
+- Code quality tools (linting, formatting)
+- Git integration (gitsigns)
+- Snippet support (LuaSnip)
+- Markdown editing enhancements
 
 **Installation**:
 ```bash
@@ -70,9 +115,16 @@ Both configurations include:
   - `<leader>vv` - Run LÖVE2D project
   - `<leader>vs` - Stop LÖVE2D project
 
-- **Catppuccin Theme**: Soothing pastel colors with mocha flavor
+- **Catppuccin Theme**: Soothing pastel colors with multiple flavor options
 
-- **Modern Development**: LSP, completion, and syntax highlighting
+- **Modern Development Stack**:
+  - LSP with Mason for language server management
+  - Intelligent completion with nvim-cmp
+  - Syntax highlighting with Treesitter
+  - Code formatting and linting
+  - Git integration with Gitsigns
+
+- **Enhanced UI**: Buffer lines, status bars, and notification systems
 
 ## 🚀 Getting Started
 
@@ -92,14 +144,22 @@ Both configurations include:
 - Modify keymaps in `lua/config/keymaps.lua`
 
 ### Standalone
-- Edit `init.lua` directly
-- All configuration is in one file for easy modification
+- Edit core settings in `lua/core/` (options.lua, keymaps.lua)
+- Add/modify plugins in `lua/plugins/` (individual plugin files)
+- Each plugin has its own configuration file for easy management
 
 ## 📚 Learn More
 
 - [LazyVim Documentation](https://lazyvim.github.io/installation)
 - [Neovim Documentation](https://neovim.io/doc/)
 - [Catppuccin Theme](https://github.com/catppuccin/nvim)
+- [Lazy.nvim Plugin Manager](https://github.com/folke/lazy.nvim)
+- [LÖVE2D Game Engine](https://love2d.org/)
+- [Mason LSP Manager](https://github.com/williamboman/mason.nvim)
+
+## 🔍 Key Reference
+
+For detailed keybindings and configuration options, see `standalone/keybind.md` in the repository.
 
 ---
 

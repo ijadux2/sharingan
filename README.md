@@ -1,166 +1,136 @@
-# 🚀 nvim-for-me
+# Neovim Configuration
 
-A collection of Neovim configurations with two distinct setups:
+A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager with a focus on productivity and aesthetics.
 
-1. **LazyVim Base** - A feature-rich configuration built on LazyVim
-2. **Standalone** - A minimal, self-contained configuration
+## 🎨 Features
 
-## 📁 Repository Structure
+- **Theme**: Catppuccin (Mocha flavor) with transparent background support
+- **Plugin Manager**: lazy.nvim for fast and efficient plugin management
+- **LSP**: Full Language Server Protocol support with Mason for easy installation
+- **Completion**: nvim-cmp with snippet support via LuaSnip
+- **File Explorer**: nvim-tree.lua for intuitive file navigation
+- **Status Line**: lualine.nvim for a beautiful status bar
+- **Git Integration**: gitsigns.nvim for git decorations and operations
+- **Session Management**: auto-session with session-lens for workspace persistence
+- **Dashboard**: Snacks.nvim dashboard for quick access to recent files and sessions
+- **Linting & Formatting**: nvim-lint and conform.nvim for code quality
+- **Terminal**: Built-in terminal support with keybindings
+- **Markdown**: Preview support with markdown-preview.nvim
+
+## 📁 Structure
 
 ```
-nvim-for-me/
-├── lazyvim_base/          # LazyVim-based configuration
-│   ├── init.lua          # Entry point
-│   ├── lua/
-│   │   ├── config/       # Core configuration files
-│   │   │   ├── autocmds.lua
-│   │   │   ├── keymaps.lua
-│   │   │   ├── lazy.lua
-│   │   │   └── options.lua
-│   │   └── plugins/      # Plugin configurations
-│   │       ├── catppuccin.lua
-│   │       ├── lsp.lua
-│   │       ├── lualine.lua
-│   │       ├── mason.lua
-│   │       ├── snacks.lua
-│   │       ├── treesitter.lua
-│   │       └── ...
-│   ├── README.md         # Detailed LazyVim README
-│   └── ...
-└── standalone/           # Modular standalone configuration
-    ├── init.lua         # Entry point with core setup
-    ├── lua/
-    │   ├── core/        # Core configuration
-    │   │   ├── keymaps.lua
-    │   │   └── options.lua
-    │   └── plugins/     # Individual plugin configs
-    │       ├── autopairs.lua
-    │       ├── bufferline.lua
-    │       ├── catppuccin.lua
-    │       ├── cmp.lua
-    │       ├── comment.lua
-    │       ├── conform.lua
-    │       ├── gitsigns.lua
-    │       ├── indent-blankline.lua
-    │       ├── lazydev.lua
-    │       ├── lint.lua
-    │       ├── love2d.lua
-    │       ├── lspconfig.lua
-    │       ├── lualine.lua
-    │       ├── luasnip.lua
-    │       ├── markdown.lua
-    │       ├── mason.lua
-    │       ├── mason-lspconfig.lua
-    │       ├── mini.lua
-    │       ├── noice.lua
-    │       ├── nvim-tree.lua
-    │       ├── snacks.lua
-    │       └── treesitter.lua
-    ├── keybind.md        # Keybinding documentation
-    └── lazy-lock.json    # Plugin lockfile
+.
+├── init.lua                    # Entry point - bootstraps lazy.nvim and loads modules
+├── keybind.md                  # Comprehensive keybinding documentation
+├── lazy-lock.json             # Plugin lock file for reproducible builds
+└── lua/
+    ├── core/
+    │   ├── keymaps.lua        # Global key mappings
+    │   └── options.lua        # Neovim options and settings
+    └── plugins/
+        ├── autopairs.lua      # Auto-close brackets, quotes, etc.
+        ├── bufferline.lua     # Buffer tabs
+        ├── catppuccin.lua     # Theme configuration
+        ├── cmp.lua            # Completion configuration
+        ├── comment.lua        # Toggle comments
+        ├── conform.lua        # Code formatting
+        ├── gitsigns.lua       # Git integration
+        ├── indent-blankline.lua # Indentation guides
+        ├── lazydev.lua        # Lua development
+        ├── lint.lua           # Linting configuration
+        ├── love2d.lua         # LÖVE development support
+        ├── lspconfig.lua      # LSP configuration
+        ├── lualine.lua        # Status line
+        ├── luasnip.lua        # Snippet engine
+        ├── markdown.lua       # Markdown preview
+        ├── mason-lspconfig.lua # LSP server management
+        ├── mason.lua          # Package manager for LSP tools
+        ├── mini.lua           # Mini.nvim utilities
+        ├── noice.lua          # UI improvements
+        ├── nvim-tree.lua      # File explorer
+        ├── snacks.lua         # Dashboard and utilities
+        └── treesitter.lua     # Syntax highlighting
 ```
 
-## 🔧 Configurations
+## 🚀 Quick Start
 
-### LazyVim Base
-Built on top of [LazyVim](https://github.com/LazyVim/LazyVim) with extensive customizations:
+1. **Install Neovim** (v0.9.0+)
+2. **Backup** your existing Neovim configuration:
+   ```bash
+   mv ~/.config/nvim ~/.config/nvim.backup
+   ```
+3. **Clone** this repository:
+   ```bash
+   git clone <repository-url> ~/.config/nvim
+   ```
+4. **Launch** Neovim - lazy.nvim will automatically install all plugins:
+   ```bash
+   nvim
+   ```
 
-- **Theme**: Catppuccin with transparent background
-- **LSP**: Full language server support with Mason
-- **Game Dev**: LÖVE2D integration
-- **UI**: Custom dashboard, status line, and file explorer
-- **Tools**: Linting, formatting, completion, and snippets
+## ⚙️ Requirements
 
-**Installation**: See [lazyvim_base/README.md](./lazyvim_base/README.md)
+- **Neovim**: v0.9.0 or higher
+- **Git**: Required for plugin installation
+- **Nerd Font**: JetBrainsMono Nerd Font (configured in options.lua)
 
-### Standalone
-A modular, well-organized configuration perfect for:
+## 🔧 Key Bindings
 
-- Quick setups on new machines
-- Learning Neovim configuration structure
-- Customizable editing environments
-- Understanding plugin management
+All keybindings are documented in `keybind.md`. Here are the most important ones:
 
-**Features**:
-- Modular architecture with separate config files
-- Essential plugins (Treesitter, LSP, completion)
-- Catppuccin theme with multiple variants
-- Full LSP support with Mason
-- File explorer (NvimTree)
-- LÖVE2D game development support
-- Advanced UI components (bufferline, lualine, noice)
-- Code quality tools (linting, formatting)
-- Git integration (gitsigns)
-- Snippet support (LuaSnip)
-- Markdown editing enhancements
+### General
+- `<leader><leader>` - Open file picker
+- `<leader>t` - Open terminal
+- `<leader>e` - Open file explorer
+- `\` - Toggle NvimTree
 
-**Installation**:
-```bash
-# Backup existing config
-mv ~/.config/nvim ~/.config/nvim.backup
+### LSP
+- `gd` - Go to definition
+- `gr` - Go to references  
+- `K` - Show documentation
+- `<leader>ca` - Code actions
 
-# Copy standalone config
-cp -r standalone ~/.config/nvim
+### Session Management
+- `<leader>ss` - Search sessions
+- `<leader>sl` - Load session
+- `<leader>sn` - Save current session
 
-# Launch Neovim
-nvim
-```
+## 🎯 Highlights
 
-## 🎮 Common Features
+### Custom Configuration
+- **Leader key**: Set to `<Space>` for ergonomic access
+- **Line numbers**: Both absolute and relative enabled
+- **Clipboard**: System clipboard integration
+- **Diagnostics**: Configured to show warnings and errors (no spelling hints)
+- **Netrw**: Configured for tree-like file browsing
 
-Both configurations include:
+### Language Support
+- **Lua Development**: lazydev.nvim for Neovim plugin development
+- **LÖVE 2D**: love2d.nvim for game development
+- **General**: Treesitter provides syntax highlighting for most languages
 
-- **LÖVE2D Support**: Game development tools with keybindings:
-  - `<leader>v` - LÖVE2D menu (Lua files)
-  - `<leader>vv` - Run LÖVE2D project
-  - `<leader>vs` - Stop LÖVE2D project
+### Performance Optimizations
+- **Lazy loading**: All plugins load on-demand
+- **Lock file**: Ensures reproducible plugin versions
+- **Minimal startup**: Only essential configurations loaded initially
 
-- **Catppuccin Theme**: Soothing pastel colors with multiple flavor options
+## 📚 Documentation
 
-- **Modern Development Stack**:
-  - LSP with Mason for language server management
-  - Intelligent completion with nvim-cmp
-  - Syntax highlighting with Treesitter
-  - Code formatting and linting
-  - Git integration with Gitsigns
+- **Full Keybinding Reference**: See `keybind.md` for complete documentation
+- **Plugin Documentation**: Each plugin file contains inline documentation
+- **Configuration Details**: Comments in `lua/core/options.lua` explain each setting
 
-- **Enhanced UI**: Buffer lines, status bars, and notification systems
+## 🛠️ Maintenance
 
-## 🚀 Getting Started
+- **Update plugins**: Run `:Lazy` to update all plugins
+- **Check health**: Run `:checkhealth` to verify installation
+- **Clean lock file**: Remove `lazy-lock.json` to regenerate with latest plugin versions
 
-1. Choose your configuration:
-   - **LazyVim Base** for full-featured development
-   - **Standalone** for minimal setup
+## 🤝 Contributing
 
-2. Follow the installation instructions for your chosen config
+Feel to fork, modify, and adapt this configuration to your needs. This is designed as a solid foundation for a productive Neovim setup.
 
-3. Customize as needed by editing the relevant files
+## 📄 License
 
-## 🛠️ Customization
-
-### LazyVim Base
-- Edit files in `lua/config/` for core settings
-- Add plugins in `lua/plugins/`
-- Modify keymaps in `lua/config/keymaps.lua`
-
-### Standalone
-- Edit core settings in `lua/core/` (options.lua, keymaps.lua)
-- Add/modify plugins in `lua/plugins/` (individual plugin files)
-- Each plugin has its own configuration file for easy management
-
-## 📚 Learn More
-
-- [LazyVim Documentation](https://lazyvim.github.io/installation)
-- [Neovim Documentation](https://neovim.io/doc/)
-- [Catppuccin Theme](https://github.com/catppuccin/nvim)
-- [Lazy.nvim Plugin Manager](https://github.com/folke/lazy.nvim)
-- [LÖVE2D Game Engine](https://love2d.org/)
-- [Mason LSP Manager](https://github.com/williamboman/mason.nvim)
-
-## 🔍 Key Reference
-
-For detailed keybindings and configuration options, see `standalone/keybind.md` in the repository.
-
----
-
-**Built with ❤️ for personalized Neovim experience**
+This configuration is provided as-is for educational and personal use. Feel free to adapt it for your own workflow.

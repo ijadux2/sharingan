@@ -62,7 +62,10 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
    ```
 3. **Clone** this repository:
    ```bash
-   git clone <repository-url> ~/.config/nvim
+   git clone https://github.com/ijadux2/nvim-for-me.git ~/.config/nvim
+   cd nvim-for-me
+   mkdir ~/.config/nvim
+   mv * ~/.config/nvim
    ```
 4. **Launch** Neovim - lazy.nvim will automatically install all plugins:
    ```bash

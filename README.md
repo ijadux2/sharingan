@@ -4,25 +4,23 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
 
 ## 🎨 Features
 
-- **Theme**: Catppuccin (Mocha flavor) with transparent background support
+- **Theme**: Multiple beautiful themes (Tokyo Night, Kanagawa, Moonfly, Gruvbox, Rose Pine)
 - **Plugin Manager**: lazy.nvim for fast and efficient plugin management
 - **LSP**: Full Language Server Protocol support with Mason for easy installation
 - **Completion**: nvim-cmp with snippet support via LuaSnip
-- **File Explorer**: nvim-tree.lua for intuitive file navigation
 - **Status Line**: lualine.nvim for a beautiful status bar
 - **Git Integration**: gitsigns.nvim for git decorations and operations
-- **Session Management**: auto-session with session-lens for workspace persistence
-- **Dashboard**: Snacks.nvim dashboard for quick access to recent files and sessions
+- **Dashboard**: Snacks.nvim dashboard with animated startup screen
 - **Linting & Formatting**: nvim-lint and conform.nvim for code quality
 - **Terminal**: Built-in terminal support with keybindings
 - **Markdown**: Preview support with markdown-preview.nvim
+- **File Explorer**: Snacks explorer for intuitive file navigation
 
 ## 📁 Structure
 
 ```
 .
 ├── init.lua                    # Entry point - bootstraps lazy.nvim and loads modules
-├── keybind.md                  # Comprehensive keybinding documentation
 ├── lazy-lock.json             # Plugin lock file for reproducible builds
 └── lua/
     ├── core/
@@ -31,7 +29,7 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
     └── plugins/
         ├── autopairs.lua      # Auto-close brackets, quotes, etc.
         ├── bufferline.lua     # Buffer tabs
-        ├── catppuccin.lua     # Theme configuration
+        ├── coloursheme.lua    # Theme configurations
         ├── cmp.lua            # Completion configuration
         ├── comment.lua        # Toggle comments
         ├── conform.lua        # Code formatting
@@ -48,8 +46,11 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
         ├── mason.lua          # Package manager for LSP tools
         ├── mini.lua           # Mini.nvim utilities
         ├── noice.lua          # UI improvements
-        ├── nvim-tree.lua      # File explorer
         ├── snacks.lua         # Dashboard and utilities
+        ├── snacks-explorer.lua # File explorer
+        ├── terminal-commad.lua # Terminal integration
+        ├── command.lua        # Command utilities
+        ├── trouble.lua        # Diagnostics viewer
         └── treesitter.lua     # Syntax highlighting
 ```
 
@@ -77,13 +78,25 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
 
 ## 🔧 Key Bindings
 
-All keybindings are documented in `keybind.md`. Here are the most important ones:
+Here are the most important keybindings configured in `lua/core/keymaps.lua`:
 
 ### General
-- `<leader><leader>` - Open file picker
-- `<leader>t` - Open terminal
-- `<leader>e` - Open file explorer
-- `\` - Toggle NvimTree
+- `<leader><leader>` - Open file picker (Snacks)
+- `<leader>g` - Live grep (Snacks)
+- `<leader>t` - Split terminal (Snacks)
+- `<leader>h` - Color scheme picker (Snacks)
+- `<leader>d` - Diagnostics picker (Snacks)
+- `<C-c>` - Command history (Snacks)
+- `<S-r>` - Recent files (Snacks)
+- `<S-s>` - Fast navigation up (25 lines)
+- `<S-d>` - Fast navigation down (25 lines)
+
+### Buffer Navigation
+- `<Tab>` - Next buffer
+- `<S-Tab>` - Previous buffer
+
+### Comments
+- `<leader>c` - Toggle comment (visual mode)
 
 ### LSP
 - `gd` - Go to definition
@@ -91,10 +104,9 @@ All keybindings are documented in `keybind.md`. Here are the most important ones
 - `K` - Show documentation
 - `<leader>ca` - Code actions
 
-### Session Management
-- `<leader>ss` - Search sessions
-- `<leader>sl` - Load session
-- `<leader>sn` - Save current session
+### Utility
+- `<leader>.` - Source current file
+- `<C-s>` - Save and quit all windows
 
 ## 🎯 Highlights
 
@@ -103,7 +115,9 @@ All keybindings are documented in `keybind.md`. Here are the most important ones
 - **Line numbers**: Both absolute and relative enabled
 - **Clipboard**: System clipboard integration
 - **Diagnostics**: Configured to show warnings and errors (no spelling hints)
-- **Netrw**: Configured for tree-like file browsing
+- **Font**: JetBrainsMono Nerd Font configured
+- **Dashboard**: Animated startup screen with custom ASCII art
+- **Notification System**: Snacks.nvim notifier with fancy styling
 
 ### Language Support
 - **Lua Development**: lazydev.nvim for Neovim plugin development
@@ -117,7 +131,7 @@ All keybindings are documented in `keybind.md`. Here are the most important ones
 
 ## 📚 Documentation
 
-- **Full Keybinding Reference**: See `keybind.md` for complete documentation
+- **Keybinding Reference**: See `lua/core/keymaps.lua` for complete keybinding documentation
 - **Plugin Documentation**: Each plugin file contains inline documentation
 - **Configuration Details**: Comments in `lua/core/options.lua` explain each setting
 
@@ -126,6 +140,7 @@ All keybindings are documented in `keybind.md`. Here are the most important ones
 - **Update plugins**: Run `:Lazy` to update all plugins
 - **Check health**: Run `:checkhealth` to verify installation
 - **Clean lock file**: Remove `lazy-lock.json` to regenerate with latest plugin versions
+- **Dashboard**: Access via `<leader>h` or automatically on startup
 
 ## 🤝 Contributing
 

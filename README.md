@@ -19,12 +19,15 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
 ## 📸 Screenshots
 
 ### Dashboard
+
 ![Dashboard](assest/screenshot_2026-01-27_19-11-29.png)
 
 ### Code Editing with LSP
+
 ![Code Editing](assest/screenshot_2026-01-27_19-12-24.png)
 
 ### File Explorer & Terminal
+
 ![File Explorer](assest/screenshot_2026-01-27_19-12-42.png)
 
 ## 📁 Structure
@@ -74,7 +77,7 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
    ```
 3. **Clone** this repository:
    ```bash
-   git clone <repository-url> ~/.config/nvim
+   git clone https://github.com/ijadux2/nvim-for-me.git ~/.config/nvim
    ```
 4. **Launch** Neovim - lazy.nvim will automatically install all plugins:
    ```bash
@@ -92,6 +95,7 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
 Here are the most important keybindings configured in `lua/core/keymaps.lua`:
 
 ### General
+
 - `<leader><leader>` - Open file picker (Snacks)
 - `<leader>g` - Live grep (Snacks)
 - `<leader>t` - Split terminal (Snacks)
@@ -103,25 +107,30 @@ Here are the most important keybindings configured in `lua/core/keymaps.lua`:
 - `<S-d>` - Fast navigation down (25 lines)
 
 ### Buffer Navigation
+
 - `<Tab>` - Next buffer
 - `<S-Tab>` - Previous buffer
 
 ### Comments
+
 - `<leader>c` - Toggle comment (visual mode)
 
 ### LSP
+
 - `gd` - Go to definition
-- `gr` - Go to references  
+- `gr` - Go to references
 - `K` - Show documentation
 - `<leader>ca` - Code actions
 
 ### Utility
+
 - `<leader>.` - Source current file
 - `<C-s>` - Save and quit all windows
 
 ## 🎯 Highlights
 
 ### Custom Configuration
+
 - **Leader key**: Set to `<Space>` for ergonomic access
 - **Line numbers**: Both absolute and relative enabled
 - **Clipboard**: System clipboard integration
@@ -131,11 +140,13 @@ Here are the most important keybindings configured in `lua/core/keymaps.lua`:
 - **Notification System**: Snacks.nvim notifier with fancy styling
 
 ### Language Support
+
 - **Lua Development**: lazydev.nvim for Neovim plugin development
 - **LÖVE 2D**: love2d.nvim for game development
 - **General**: Treesitter provides syntax highlighting for most languages
 
 ### Performance Optimizations
+
 - **Lazy loading**: All plugins load on-demand
 - **Lock file**: Ensures reproducible plugin versions
 - **Minimal startup**: Only essential configurations loaded initially
@@ -160,3 +171,4 @@ Feel to fork, modify, and adapt this configuration to your needs. This is design
 ## 📄 License
 
 This configuration is provided as-is for educational and personal use. Feel free to adapt it for your own workflow.
+

@@ -18,8 +18,8 @@ vim.keymap.set("n", "<S-r>", ":lua Snacks.picker.recent(opts)<CR>")
 vim.keymap.set("n", "<leader>d", ":lua Snacks.picker.diagnostics(opts)<CR>")
 
 -- navigation
-vim.keymap.set("n", "<S-s>", "50k")
-vim.keymap.set("n", "<S-d>", "50j")
+vim.keymap.set("n", "<S-s>", "25k")
+vim.keymap.set("n", "<S-d>", "25j")
 
 -- Bufferline navigation
 vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
@@ -31,3 +31,6 @@ vim.keymap.set("v", "<leader>c", function()
 end, { desc = "Toggle comment for selection" })
 
 vim.keymap.set("n", "<leader>.", ":source %<CR>")
+-- command_history
+vim.keymap.set("n", "<S-l>", ":Shell<CR>")
+vim.keymap.set("n", "<C-s>", ":wqa<CR>")

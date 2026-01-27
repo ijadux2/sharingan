@@ -14,7 +14,7 @@ return {
 ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
  
-this is not the power of you creation
+this is not the power of your creation
           ]],
 				keys = {
 					{ icon = " ", key = "n", desc = "New file", action = ":ene | startinsert" },

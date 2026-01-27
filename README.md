@@ -16,6 +16,17 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
 - **Markdown**: Preview support with markdown-preview.nvim
 - **File Explorer**: Snacks explorer for intuitive file navigation
 
+## 📸 Screenshots
+
+### Dashboard
+![Dashboard](assest/screenshot_2026-01-27_19-11-29.png)
+
+### Code Editing with LSP
+![Code Editing](assest/screenshot_2026-01-27_19-12-24.png)
+
+### File Explorer & Terminal
+![File Explorer](assest/screenshot_2026-01-27_19-12-42.png)
+
 ## 📁 Structure
 
 ```

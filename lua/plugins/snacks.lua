@@ -3,6 +3,17 @@ return {
 	priority = 999,
 	lazy = false,
 	opts = {
+		bigfile = { enabled = true },
+		notifier = { enabled = true },
+		quickfile = { enabled = true },
+		scroll = { enabled = true },
+		picker = {
+			enabled = true,
+			sources = {
+				files = { enabled = true },
+				oldfiles = { enabled = true },
+			},
+		},
 		dashboard = {
 			enabled = true,
 			preset = {
@@ -43,7 +54,7 @@ this is not the power of your creation
 			},
 			animate = {
 				enabled = true,
-				fps = 30,
+				fps = 60,
 				easing = "outCubic",
 			},
 		},
@@ -52,13 +63,13 @@ this is not the power of your creation
 			timeout = 3000,
 			style = "fancy",
 			icons = {
-				error = "",
-				warn = "",
-				info = "",
-				debug = "",
-				trace = "",
+				error = "",
+				warn = "",
+				info = "",
+				debug = "",
+				trace = "󱕆",
 			},
-			top_down = false,
+			top_down = true,
 		},
 	},
 	config = function(_, opts)

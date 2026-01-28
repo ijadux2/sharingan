@@ -48,9 +48,8 @@ return {
 				complete = "shellcmd",
 			})
 
-			-- KEYBIND: Pressing 'i' usually enters insert mode,
-			-- -- but if you want a shortcut to open this shell:
-			vim.keymap.set("n", "<leader>i", ":Shell ", { desc = "Shell Command" })
+			-- KEYBIND: Open shell command with a non-conflicting keybinding
+			vim.keymap.set("n", "<leader>s", ":Shell ", { desc = "Shell Command" })
 		end,
 	},
 }

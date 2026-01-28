@@ -14,7 +14,7 @@ vim.opt.cursorline = true
 -- vim.opt.winblend = 100 -- blur for nvim as window
 vim.opt.showtabline = 2
 vim.opt.linebreak = true
--- vim.opt.guicursor = "n-v-c-i:block"
+vim.opt.guicursor = "n-v-c-i:block"
 
 -- Netrw settings
 vim.g.netrw_liststyle = 3

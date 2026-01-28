@@ -12,9 +12,13 @@ return {
 				lazy = true,
 				lsp = true,
 				meson = true,
+				gitsigns = true,
+				mini = true,
+				cmp = true,
+				snacks = true,
+				noice = true,
 			},
 		})
 		vim.cmd.colorscheme("catppuccin-mocha")
 	end,
 }
-

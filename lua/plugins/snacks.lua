@@ -9,6 +9,7 @@ return {
 		scroll = { enabled = true },
 		picker = {
 			enabled = true,
+			hidden = true, -- shows dotfiles
 			sources = {
 				files = { enabled = true },
 				oldfiles = { enabled = true },

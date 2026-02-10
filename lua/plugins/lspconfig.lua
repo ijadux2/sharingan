@@ -1,5 +1,51 @@
 return {
 	"neovim/nvim-lspconfig",
+
+	opts = {
+		servers = {
+			-- Shell
+			bashls = {},
+
+			-- C / C++
+			clangd = {
+				cmd = { "clangd", "--background-index", "--clang-tidy" },
+			},
+
+			-- Lua (Neovim)
+			lua_ls = {
+				settings = {
+					Lua = {
+						diagnostics = { globals = { "vim" } },
+						workspace = { checkThirdParty = false },
+						telemetry = { enable = false },
+					},
+				},
+			},
+			-- Web
+			cssls = {},
+			html = {},
+			jsonls = {},
+
+			-- Data / Config
+			yamlls = {},
+			nil_ls = {},
+
+			-- Docs
+			marksman = {},
+			markdown_oxide = {},
+
+			-- Build systems
+			mesonlsp = {},
+
+			-- Scripting
+			vimls = {},
+			powershell_es = {},
+
+			-- Zig
+			zls = {},
+		},
+	},
+
 	config = function()
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -24,8 +70,13 @@ return {
 			capabilities = capabilities,
 			settings = {
 				Lua = {
+					runtime = {
+						-- Tell the language server which version of Lua you're using
+						version = "LuaJIT",
+					},
 					diagnostics = {
-						globals = { "love", "vim" },
+						-- Recognizes 'vim' for Neovim and 'love' for LÖVE 2D
+						globals = { "vim", "love" },
 						disable = { "different-requires" },
 					},
 					completion = {
@@ -33,14 +84,17 @@ return {
 						keywordSnippet = "Replace",
 					},
 					workspace = {
+						-- Logic to pull in Neovim APIs and Love2D libraries
 						library = {
-							["${3rd}/love2d/library"] = true,
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.expand("$VIMRUNTIME/lua/vim")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
+							vim.env.VIMRUNTIME,
+							-- This includes your config and the 3rd party Love2D lib
+							"${3rd}/love2d/library",
+							vim.fn.stdpath("config") .. "/lua",
 						},
-						maxPreload = 2000,
+						-- Prevent the LSP from getting overwhelmed by large libraries
+						maxPreload = 3000,
 						preloadFileSize = 1000,
+						checkThirdParty = false,
 					},
 					telemetry = {
 						enable = false,

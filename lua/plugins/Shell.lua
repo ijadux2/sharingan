@@ -6,13 +6,11 @@ return {
 			vim.api.nvim_create_user_command("Shell", function(opts)
 				local cmd = opts.args
 				local buf = vim.api.nvim_create_buf(false, true)
-
 				-- Dimensions: Narrower and at the bottom to mimic the "command section"
 				local width = math.ceil(vim.o.columns * 0.9)
 				local height = cmd == "" and math.ceil(vim.o.lines * 0.8) or 10
 				local row = vim.o.lines - height - 3
 				local col = math.ceil((vim.o.columns - width) / 2)
-
 				local win = vim.api.nvim_open_win(buf, true, {
 					relative = "editor",
 					width = width,
@@ -24,10 +22,8 @@ return {
 					title = " " .. (cmd ~= "" and "  " .. cmd or " Zsh ") .. " ",
 					title_pos = "left",
 				})
-
 				-- Setup terminal
 				local exec_args = cmd ~= "" and { "zsh", "-c", cmd } or { "zsh" }
-
 				vim.fn.termopen(exec_args, {
 					cwd = vim.fn.getcwd(),
 					on_exit = function(_, code)
@@ -37,7 +33,6 @@ return {
 						end
 					end,
 				})
-
 				-- Keybind to close the window with 'q' or 'Esc' in normal mode
 				vim.keymap.set("n", "q", ":close<CR>", { buffer = buf, silent = true })
 				vim.keymap.set("n", "<Esc>", ":close<CR>", { buffer = buf, silent = true })
@@ -47,9 +42,7 @@ return {
 				nargs = "*",
 				complete = "shellcmd",
 			})
-
 			-- KEYBIND: Open shell command with a non-conflicting keybinding
-			vim.keymap.set("n", "<leader>s", ":Shell ", { desc = "Shell Command" })
 		end,
 	},
 }

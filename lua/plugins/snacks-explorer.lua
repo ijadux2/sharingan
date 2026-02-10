@@ -21,6 +21,7 @@ return {
 			picker = {
 				enabled = true,
 				ui_select = true,
+				hidden = true, -- shows dotfiles
 				win = {
 					input = {
 						keys = {

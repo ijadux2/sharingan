@@ -21,14 +21,40 @@ return {
 					},
 				},
 			},
-			-- Web
+			-- Web / React / TypeScript
+			ts_ls = {
+				settings = {
+					typescript = {
+						inlayHints = {
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+						},
+					},
+					javascript = {
+						inlayHints = {
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+						},
+					},
+				},
+			},
 			cssls = {},
+			tailwindcss = {},
 			html = {},
 			jsonls = {},
 
 			-- Data / Config
 			yamlls = {},
-			nil_ls = {},
 
 			-- Docs
 			marksman = {},
@@ -43,6 +69,12 @@ return {
 
 			-- Zig
 			zls = {},
+
+			-- Rust
+			rust_analyzer = {},
+
+			-- Go
+			gopls = {},
 		},
 	},
 

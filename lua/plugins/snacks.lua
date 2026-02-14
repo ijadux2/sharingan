@@ -10,8 +10,13 @@ return {
 		picker = {
 			enabled = true,
 			hidden = true, -- shows dotfiles
+			ignored = true, -- show ignored files
+			exclude = { ".git" }, -- exclude .git directory
 			sources = {
-				files = { enabled = true },
+				files = { 
+					enabled = true,
+					exclude = { ".git" },
+				},
 				oldfiles = { enabled = true },
 			},
 		},

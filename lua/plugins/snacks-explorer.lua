@@ -10,6 +10,9 @@ return {
 				git = {
 					status = false, -- Hides the [M], [A], [U] indicators
 				},
+				hidden = true, -- show hidden files
+				ignored = true, -- show ignored files
+				exclude = { ".git" }, -- exclude .git directory
 				win = {
 					inner = {
 						border = "rounded", -- Options: "none", "single", "double", "rounded"

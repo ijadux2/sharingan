@@ -4,7 +4,7 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
 
 ## 🎨 Features
 
-- **Theme**: Multiple beautiful themes (Tokyo Night, Kanagawa, Moonfly, Gruvbox, Rose Pine)
+- **Theme**: Multiple beautiful themes (Tokyo Night, Kanagawa, Moonfly, Gruvbox, Rose Pine, Catppuccin, Cyberdream)
 - **Plugin Manager**: lazy.nvim for fast and efficient plugin management
 - **LSP**: Full Language Server Protocol support with Mason for easy installation
 - **Completion**: nvim-cmp with snippet support via LuaSnip
@@ -15,6 +15,49 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
 - **Terminal**: Built-in terminal support with keybindings
 - **Markdown**: Preview support with markdown-preview.nvim
 - **File Explorer**: Snacks explorer for intuitive file navigation
+
+## 🧩 Custom Plugins
+
+This configuration includes three custom utility plugins:
+
+### App Launcher
+
+A fast application launcher that scans your system for `.desktop` applications and presents them in a beautiful picker interface.
+
+- **Keybinding**: `<leader>a` / `<M-p>`
+- **Features**:
+  - Scans `/usr/share/applications`, `/usr/local/share/applications`, and `~/.local/share/applications`
+  - Displays applications with their desktop icons
+  - Supports custom command execution
+  - Fuzzy search with Snacks picker
+
+### Screenshot
+
+Capture screenshots directly from Neovim using `grim` (Wayland) and `slurp` for region selection.
+
+- **Keybinding**: `<leader>ps` / `<M-p><M-s>` (quick window capture)
+- **Capture Modes**:
+  - Window capture
+  - Selection capture (region picker)
+  - Fullscreen capture
+- **Output Options**:
+  - Save to file (`~/Pictures/screenshot/`)
+  - Copy directly to clipboard
+
+### Web Search
+
+Search the web from within Neovim and open results in your default browser.
+
+- **Keybinding**: `<leader>s` / `<M-s>`
+- **Search Engines**:
+  - DuckDuckGo (default)
+  - Google
+  - Wikipedia
+  - YouTube
+  - GitHub
+  - Stack Overflow
+  - Reddit
+  - Web (minimal HTML version)
 
 ## 📸 Screenshots
 
@@ -30,16 +73,28 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
 
 ![File Explorer](assest/screenshot_2026-01-27_19-12-42.png)
 
+### Application Launcher
+
+![App Launcher](assest/screenshot_2026-02-14_15-27-23.png)
+
+### Screenshot Tool
+
+![Screenshot](assest/screenshot_2026-02-14_15-28-00.png)
+
 ## 📁 Structure
 
 ```
 .
 ├── init.lua                    # Entry point - bootstraps lazy.nvim and loads modules
 ├── lazy-lock.json             # Plugin lock file for reproducible builds
+├── lazyvim.json              # LazyVim extras configuration
 └── lua/
     ├── core/
     │   ├── keymaps.lua        # Global key mappings
     │   └── options.lua        # Neovim options and settings
+    ├── app-launcher.lua       # Custom application launcher
+    ├── screenshot.lua        # Custom screenshot utility
+    ├── web-search.lua        # Custom web search plugin
     └── plugins/
         ├── autopairs.lua      # Auto-close brackets, quotes, etc.
         ├── bufferline.lua     # Buffer tabs
@@ -126,6 +181,13 @@ Here are the most important keybindings configured in `lua/core/keymaps.lua`:
 
 - `<leader>.` - Source current file
 - `<C-s>` - Save and quit all windows
+
+### Custom Plugins
+
+- `<leader>a` / `<M-p>` - Application Launcher
+- `<leader>s` / `<M-s>` - Web Search
+- `<leader>ps` - Screenshot picker
+- `<M-p><M-s>` - Quick Screenshot (Window)
 
 ## 🎯 Highlights
 

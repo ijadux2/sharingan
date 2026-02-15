@@ -30,6 +30,14 @@ A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/laz
 
 ![File Explorer](assest/screenshot_2026-01-27_19-12-42.png)
 
+### More Screenshots
+
+![Fullscreen](assest/fullscreen_2026-02-14_14-52-00.png)
+
+![Screenshot](assest/screenshot_2026-02-14_15-27-23.png)
+
+![Screenshot](assest/screenshot_2026-02-14_15-28-00.png)
+
 ## 📁 Structure
 
 ```

@@ -1,6 +1,16 @@
 -- Basic Neovim settings
 vim.opt.clipboard = "unnamedplus"
 vim.g.mapleader = " "
+
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
+})
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 2

@@ -16,6 +16,11 @@ vim.keymap.set("n", "<M-s>", function()
 	require("web-search").search()
 end, { desc = "Web Search (Alt+s)" })
 
+-- Text Browser (w3m)
+vim.keymap.set("n", "<leader>w", function()
+	require("text-browser").browse()
+end, { desc = "Text Browser" })
+
 -- Screenshot
 vim.keymap.set("n", "<leader>ps", function()
 	require("screenshot").pick()
@@ -23,6 +28,21 @@ end, { desc = "Screenshot" })
 vim.keymap.set("n", "<M-p><M-s>", function()
 	require("screenshot").capture_window()
 end, { desc = "Quick Screenshot (Window)" })
+
+-- Power Commands
+vim.keymap.set("n", "<leader>p", function()
+	require("power-commands").pick()
+end, { desc = "Power Commands" })
+
+-- Media Controls Picker
+vim.keymap.set("n", "<leader>pm", function()
+	require("power-commands").media()
+end, { desc = "Media Controls" })
+
+-- Brightness Picker
+vim.keymap.set("n", "<leader>pb", function()
+	require("power-commands").brightness_pick()
+end, { desc = "Brightness" })
 
 vim.keymap.set("n", "<leader>g", ":lua Snacks.picker.grep()<CR>", { desc = "Live grep" })
 vim.keymap.set("n", "<leader>t", function()
@@ -36,6 +56,11 @@ vim.keymap.set("n", "<leader>d", ":lua Snacks.picker.diagnostics(opts)<CR>")
 -- navigation
 vim.keymap.set("n", "<S-s>", "24k")
 vim.keymap.set("n", "<S-d>", "24j")
+
+-- Fuzzy find files
+vim.keymap.set("n", "<leader><leader>", function()
+	require("snacks").picker.files({ cwd = vim.fn.getcwd() })
+end, { desc = "Fuzzy find files" })
 
 -- Bufferline navigation
 vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })

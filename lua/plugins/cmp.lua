@@ -75,9 +75,10 @@ return {
 					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
 				}),
 			},
-			completion = {
-				completeopt = "menu,menuone,noinsert",
-			},
+		completion = {
+			autocomplete = { cmp.TriggerEvent.TextChanged },
+			completeopt = "menu,menuone,noinsert",
+		},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lsp_signature_help" },
@@ -85,7 +86,7 @@ return {
 				{ name = "treesitter" },
 				{ name = "path" },
 			}, {
-				{ name = "buffer", keyword_length = 0 },
+				{ name = "buffer", keyword_length = 3 },
 			}),
 			view = {
 				entries = { name = "custom", selection_order = "near_cursor" },

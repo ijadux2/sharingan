@@ -5,7 +5,7 @@ return {
 	config = function()
 		require("catppuccin").setup({
 			flavour = "mocha", -- latte, frappe, macchiato, mocha
-			transparent_background = false,
+			transparent_background = true,
 			term_colors = true,
 			-- Corrected: Moved these out of the "opts" nest
 			custom_highlights = function(colors)
@@ -35,6 +35,7 @@ return {
 				aerial = true,
 				alpha = true,
 				cmp = true,
+				oil = true,
 				dashboard = true,
 				flash = true,
 				fzf = true,

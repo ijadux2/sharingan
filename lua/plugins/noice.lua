@@ -1,6 +1,6 @@
 return {
 	"folke/noice.nvim",
-	enabled = false,
+	enabled = true,
 	event = "VeryLazy",
 	opts = {
 		notify = {
@@ -54,4 +54,3 @@ return {
 		require("noice").setup(opts)
 	end,
 }
-

@@ -39,10 +39,15 @@ return {
 			},
 		},
 	},
-	config = function()
+	config = function(_, opts)
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		vim.lsp.config("lua_ls", {
-			capabilities = capabilities,
-		})
+
+		for server, server_opts in pairs(opts.servers) do
+			local config = vim.tbl_deep_extend("force", {
+				capabilities = capabilities,
+			}, server_opts)
+			vim.lsp.config(server, config)
+			vim.lsp.enable(server)
+		end
 	end,
 }

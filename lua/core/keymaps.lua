@@ -72,7 +72,22 @@ vim.keymap.set("n", "<S-l>", ":Shell<CR>")
 vim.keymap.set("n", "<C-q>", ":wqa<CR>")
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 -- oil.nvim
--- vim.keymap.set("n", "<C-q>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "\\", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 -- shell commands
 vim.keymap.set("n", "<s-b>", ":Shell ", { desc = "Shell Command" })
 vim.keymap.set("n", "<C-x>", ":cd ", { desc = "chnage dir" })
+
+vim.keymap.set("n", "|", ":vsplit<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "-", ":vsplit<CR>", { noremap = true, silent = true })
+
+-- navigations
+vim.keymap.set("n", "<A-h>", "<C-w>h")
+vim.keymap.set("n", "<A-j>", "<C-w>j")
+vim.keymap.set("n", "<A-k>", "<C-w>k")
+vim.keymap.set("n", "<A-l>", "<C-w>l")
+
+-- Move between splits using Alt + Arrow keys
+vim.keymap.set("n", "<A-Left>", "<C-w>h", { desc = "Move to left split" })
+vim.keymap.set("n", "<A-Down>", "<C-w>j", { desc = "Move to bottom split" })
+vim.keymap.set("n", "<A-Up>", "<C-w>k", { desc = "Move to top split" })
+vim.keymap.set("n", "<A-Right>", "<C-w>l", { desc = "Move to right split" })

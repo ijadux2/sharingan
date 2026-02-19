@@ -75,10 +75,10 @@ return {
 					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
 				}),
 			},
-		completion = {
-			autocomplete = { cmp.TriggerEvent.TextChanged },
-			completeopt = "menu,menuone,noinsert",
-		},
+			completion = {
+				autocomplete = { cmp.TriggerEvent.TextChanged },
+				completeopt = "menu,menuone,noinsert",
+			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lsp_signature_help" },

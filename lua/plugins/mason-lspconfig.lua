@@ -12,7 +12,6 @@ return {
 				"ts_ls",
 				"tailwindcss",
 				"rust_analyzer",
-				"gopls",
 			},
 		})
 	end,

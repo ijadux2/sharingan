@@ -29,6 +29,11 @@ vim.keymap.set("n", "<M-p><M-s>", function()
 	require("screenshot").capture_window()
 end, { desc = "Quick Screenshot (Window)" })
 
+-- File Converter
+vim.keymap.set("n", "<leader>fc", function()
+	require("file-converter").pick_file_and_convert()
+end, { desc = "File Converter" })
+
 -- Power Commands
 vim.keymap.set("n", "<leader>p", function()
 	require("power-commands").pick()
@@ -69,7 +74,7 @@ vim.keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Previou
 vim.keymap.set("n", "<leader>.", ":source %<CR>")
 -- command_history
 vim.keymap.set("n", "<S-l>", ":Shell<CR>")
-vim.keymap.set("n", "<C-q>", ":wqa<CR>")
+vim.keymap.set("n", "<C-q>", ":wqa!<CR>")
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 -- oil.nvim
 vim.keymap.set("n", "\\", "<CMD>Oil<CR>", { desc = "Open parent directory" })

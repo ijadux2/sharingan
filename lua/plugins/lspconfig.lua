@@ -42,6 +42,14 @@ return {
 	config = function(_, opts)
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+		vim.lsp.config("nim_langserver", {
+			cmd = { "/home/jadu/.local/share/nvim/mason/packages/nimlangserver/nimlangserver" },
+			filetypes = { "nim" },
+			root_markers = { ".git", "*.nimble", "nim.cfg" },
+			capabilities = capabilities,
+		})
+		vim.lsp.enable("nim_langserver")
+
 		for server, server_opts in pairs(opts.servers) do
 			local config = vim.tbl_deep_extend("force", {
 				capabilities = capabilities,

@@ -2,6 +2,7 @@ return {
 	"S1M0N38/love2d.nvim",
 	event = "VeryLazy",
 	version = "2.*",
+	enable = false,
 	opts = {},
 	keys = {
 		{ "<leader>v", ft = "lua", desc = "LÖVE" },
@@ -9,3 +10,4 @@ return {
 		{ "<leader>vs", "<cmd>LoveStop<cr>", ft = "lua", desc = "Stop LÖVE" },
 	},
 }
+

@@ -17,16 +17,20 @@ return {
 			yaml = { "yamllint" },
 			markdown = { "markdownlint" },
 			css = { "stylelint" },
-			-- Use to run linters on all filetypes.
-			-- ['*'] = { 'global linter' },
-			-- Use to run linters on filetypes that don't have other linters configured.
-			-- ['_'] = { 'fallback linter' },
-			-- ["*"] = { "typos" },
+			nim = { "nim" },
 		},
 		-- LazyVim extension to easily override linter options
 		-- or add custom linters.
 		---@type table<string,table>
 		linters = {
+			nim = {
+				cmd = "nim",
+				args = { "check", "--verbosity:0" },
+				stdin = false,
+				parser = function()
+					return require("lint.parser").from_errorformat("%f(%l,%c) %t%*[^:]: %m")
+				end,
+			},
 			-- -- Example of using selene only when a selene.toml file is present
 			-- selene = {
 			--   -- `condition` is another LazyVim extension that allows you to

@@ -16,8 +16,5 @@ vim.opt.rtp:prepend(lazypath)
 require("core.options")
 require("core.keymaps")
 
--- Load org-scratch plugin
-require("org-scratch").setup()
-
 -- Setup plugins
 require("lazy").setup("plugins")

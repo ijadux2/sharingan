@@ -16,6 +16,33 @@ vim.keymap.set("n", "<M-s>", function()
 	require("web-search").search()
 end, { desc = "Web Search (Alt+s)" })
 
+-- Cheat.sh
+vim.keymap.set("n", "<leader>ch", function()
+	require("cht-sh").search()
+end, { desc = "Cheat.sh Search" })
+
+-- Git
+vim.keymap.set("n", "<leader>gg", function()
+	require("git").pick()
+end, { desc = "Git Picker" })
+vim.keymap.set("n", "<leader>gb", function()
+	require("git").switch_branch()
+end, { desc = "Git Switch Branch" })
+vim.keymap.set("n", "<leader>gc", function()
+	require("git").commit()
+end, { desc = "Git Commit" })
+vim.keymap.set("n", "<leader>gl", function()
+	require("git").log()
+end, { desc = "Git Log" })
+
+-- Fuzzy Finder
+vim.keymap.set("n", "<leader>f", function()
+	require("fuzzy").pick()
+end, { desc = "Fuzzy Finder" })
+vim.keymap.set("n", "<M-f>", function()
+	require("fuzzy").pick()
+end, { desc = "Fuzzy Finder (Alt+f)" })
+
 -- Text Browser (w3m)
 vim.keymap.set("n", "<leader>w", function()
 	require("text-browser").browse()
@@ -48,6 +75,11 @@ end, { desc = "Media Controls" })
 vim.keymap.set("n", "<leader>pb", function()
 	require("power-commands").brightness_pick()
 end, { desc = "Brightness" })
+
+-- Todo
+vim.keymap.set("n", "<leader>td", function()
+	require("todo").open()
+end, { desc = "Open Todo" })
 
 vim.keymap.set("n", "<leader>g", ":lua Snacks.picker.grep()<CR>", { desc = "Live grep" })
 vim.keymap.set("n", "<leader>t", function()

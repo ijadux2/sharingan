@@ -1,182 +1,254 @@
-# Neovim Configuration
+# Sharingan - Neovim Configuration
 
-A modern Neovim configuration using the [lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager with a focus on productivity and aesthetics.
+> A highly customized Neovim configuration built on LazyVim, designed for a powerful and productive development experience on Linux with Wayland.
 
-## 🎨 Features
+![Neovim](https://img.shields.io/badge/Neovim-0.10+-57A143?style=flat&logo=neovim)
+![Lua](https://img.shields.io/badge/Lua-5.1+-2C2D72?style=flat&logo=lua)
+![LazyVim](https://img.shields.io/badge/LazyVim-15+-57A143?style=flat)
 
-- **Theme**: Multiple beautiful themes (Tokyo Night, Kanagawa, Moonfly, Gruvbox, Rose Pine)
-- **Plugin Manager**: lazy.nvim for fast and efficient plugin management
-- **LSP**: Full Language Server Protocol support with Mason for easy installation
-- **Completion**: nvim-cmp with snippet support via LuaSnip
-- **Status Line**: lualine.nvim for a beautiful status bar
-- **Git Integration**: gitsigns.nvim for git decorations and operations
-- **Dashboard**: Snacks.nvim dashboard with animated startup screen
-- **Linting & Formatting**: nvim-lint and conform.nvim for code quality
-- **Terminal**: Built-in terminal support with keybindings
-- **Markdown**: Preview support with markdown-preview.nvim
-- **File Explorer**: Snacks explorer for intuitive file navigation
+## Overview
 
-## 📸 Screenshots
+Sharingan provides an enhanced "vision" for developers with:
 
-### Dashboard
+- Application launcher
+- Web search from within Neovim
+- Fuzzy finding for files, buffers, commands, keymaps
+- Git integration (branch switching, commits, log)
+- System controls (power, media, brightness)
+- Text-based web browser in Neovim
+- Screenshot utilities
+- Todo/notes viewer
 
-![Dashboard](assest/screenshot_2026-01-27_19-11-29.png)
+## Requirements
 
-### Code Editing with LSP
+- Neovim 0.10+
+- Linux with Wayland
+- [LazyVim](https://lazyvim.tech/) starter
+- Dependencies: `w3m`, `grim`, `slurp`, `brightnessctl`, `wpctl`, `playerctl`, `maim`, `xclip`, `nmcli`, `rfkill`, `redshift`
 
-![Code Editing](assest/screenshot_2026-01-27_19-12-24.png)
+## Installation
 
-### File Explorer & Terminal
+```bash
+# Backup existing config
+mv ~/.config/nvim ~/.config/nvim.bak
 
-![File Explorer](assest/screenshot_2026-01-27_19-12-42.png)
+# Clone Sharingan
+git clone https://github.com/yourusername/sharingan ~/.config/nvim
 
-### More Screenshots
-
-![Fullscreen](assest/fullscreen_2026-02-14_14-52-00.png)
-
-![Screenshot](assest/screenshot_2026-02-14_15-27-23.png)
-
-![Screenshot](assest/screenshot_2026-02-14_15-28-00.png)
-
-## 📁 Structure
-
-```
-.
-├── init.lua                    # Entry point - bootstraps lazy.nvim and loads modules
-├── lazy-lock.json             # Plugin lock file for reproducible builds
-└── lua/
-    ├── core/
-    │   ├── keymaps.lua        # Global key mappings
-    │   └── options.lua        # Neovim options and settings
-    └── plugins/
-        ├── autopairs.lua      # Auto-close brackets, quotes, etc.
-        ├── bufferline.lua     # Buffer tabs
-        ├── coloursheme.lua    # Theme configurations
-        ├── cmp.lua            # Completion configuration
-        ├── comment.lua        # Toggle comments
-        ├── conform.lua        # Code formatting
-        ├── gitsigns.lua       # Git integration
-        ├── indent-blankline.lua # Indentation guides
-        ├── lazydev.lua        # Lua development
-        ├── lint.lua           # Linting configuration
-        ├── love2d.lua         # LÖVE development support
-        ├── lspconfig.lua      # LSP configuration
-        ├── lualine.lua        # Status line
-        ├── luasnip.lua        # Snippet engine
-        ├── markdown.lua       # Markdown preview
-        ├── mason-lspconfig.lua # LSP server management
-        ├── mason.lua          # Package manager for LSP tools
-        ├── mini.lua           # Mini.nvim utilities
-        ├── noice.lua          # UI improvements
-        ├── snacks.lua         # Dashboard and utilities
-        ├── snacks-explorer.lua # File explorer
-        ├── terminal-commad.lua # Terminal integration
-        ├── command.lua        # Command utilities
-        ├── trouble.lua        # Diagnostics viewer
-        └── treesitter.lua     # Syntax highlighting
+# Open Neovim and let LazyVim install plugins
+nvim
 ```
 
-## 🚀 Quick Start
+## Keybindings
 
-1. **Install Neovim** (v0.9.0+)
-2. **Backup** your existing Neovim configuration:
-   ```bash
-   mv ~/.config/nvim ~/.config/nvim.backup
-   ```
-3. **Clone** this repository:
-   ```bash
-   git clone https://github.com/ijadux2/nvim-for-me.git ~/.config/nvim
-   ```
-4. **Launch** Neovim - lazy.nvim will automatically install all plugins:
-   ```bash
-   nvim
-   ```
+| Keybinding            | Description          |
+| --------------------- | -------------------- |
+| `<leader>a` / `<M-p>` | Application Launcher |
+| `<leader>s` / `<M-s>` | Web Search           |
+| `<leader>gg`          | Git Picker           |
+| `<leader>gb`          | Git Switch Branch    |
+| `<leader>gc`          | Git Commit           |
+| `<leader>gl`          | Git Log              |
+| `<leader>f` / `<M-f>` | Fuzzy Finder         |
+| `<leader>w`           | Text Browser (w3m)   |
+| `<leader>td`          | Todo/Notes Viewer    |
+| `<leader>sp`          | Screenshot           |
+| `<leader>pm`          | Power Commands       |
+| `<M-,>`               | Media Controls       |
+| `<M-.>`               | Brightness           |
 
-## ⚙️ Requirements
+## Custom Plugins
 
-- **Neovim**: v0.9.0 or higher
-- **Git**: Required for plugin installation
-- **Nerd Font**: JetBrainsMono Nerd Font (configured in options.lua)
+### Application Launcher (`lua/app-launcher.lua`)
 
-## 🔧 Key Bindings
+Scans `.desktop` files from standard locations (`/usr/share/applications`, `~/.local/share/applications`) and launches applications via a picker UI.
 
-Here are the most important keybindings configured in `lua/core/keymaps.lua`:
+**Functions:**
 
-### General
+- `pick()` - Opens application picker
 
-- `<leader><leader>` - Open file picker (Snacks)
-- `<leader>g` - Live grep (Snacks)
-- `<leader>t` - Split terminal (Snacks)
-- `<leader>h` - Color scheme picker (Snacks)
-- `<leader>d` - Diagnostics picker (Snacks)
-- `<C-c>` - Command history (Snacks)
-- `<S-r>` - Recent files (Snacks)
-- `<S-s>` - Fast navigation up (25 lines)
-- `<S-d>` - Fast navigation down (25 lines)
+### Web Search (`lua/web-search.lua`)
 
-### Buffer Navigation
+Search the web using various engines and open results in browser or text browser.
 
-- `<Tab>` - Next buffer
-- `<S-Tab>` - Previous buffer
+**Supported Engines:**
 
-### Comments
+- DuckDuckGo
+- Wikipedia
+- YouTube
+- GitHub
+- Stack Overflow
+- Reddit
+- Web (minimal)
+- Browse in Neovim (w3m)
 
-- `<leader>c` - Toggle comment (visual mode)
+**Functions:**
 
-### LSP
+- `search()` - Opens search prompt and engine picker
 
-- `gd` - Go to definition
-- `gr` - Go to references
-- `K` - Show documentation
-- `<leader>ca` - Code actions
+### Fuzzy Finder (`lua/fuzzy.lua`)
 
-### Utility
+Multi-purpose fuzzy finder for:
 
-- `<leader>.` - Source current file
-- `<C-s>` - Save and quit all windows
+- Files (recursive search up to 4 levels)
+- Git Files (untracked + git ls-files)
+- Buffers (with filetype)
+- Recent Files
+- Commands
+- Keymaps (Normal, Insert, Visual)
+- Help Tags
+- Grep (ripgrep)
 
-## 🎯 Highlights
+**Functions:**
 
-### Custom Configuration
+- `pick()` - Opens main fuzzy finder menu
 
-- **Leader key**: Set to `<Space>` for ergonomic access
-- **Line numbers**: Both absolute and relative enabled
-- **Clipboard**: System clipboard integration
-- **Diagnostics**: Configured to show warnings and errors (no spelling hints)
-- **Font**: JetBrainsMono Nerd Font configured
-- **Dashboard**: Animated startup screen with custom ASCII art
-- **Notification System**: Snacks.nvim notifier with fancy styling
+### Git Integration (`lua/git.lua`, `lua/git-branch.lua`, `lua/git-commit.lua`)
 
-### Language Support
+**Functions:**
 
-- **Lua Development**: lazydev.nvim for Neovim plugin development
-- **LÖVE 2D**: love2d.nvim for game development
-- **General**: Treesitter provides syntax highlighting for most languages
+- `pick()` - Git picker menu
+- `switch_branch()` - Switch between branches with stash support
+- `commit()` - Commit changes to selected branch
+- `log()` - View git log in floating window
 
-### Performance Optimizations
+### Power Commands (`lua/power-commands.lua`)
 
-- **Lazy loading**: All plugins load on-demand
-- **Lock file**: Ensures reproducible plugin versions
-- **Minimal startup**: Only essential configurations loaded initially
+System controls via picker:
 
-## 📚 Documentation
+**Power:**
 
-- **Keybinding Reference**: See `lua/core/keymaps.lua` for complete keybinding documentation
-- **Plugin Documentation**: Each plugin file contains inline documentation
-- **Configuration Details**: Comments in `lua/core/options.lua` explain each setting
+- Shutdown, Reboot, Sleep, Hibernate
+- Lock Screen (hyprlock), Logout
 
-## 🛠️ Maintenance
+**Media:**
 
-- **Update plugins**: Run `:Lazy` to update all plugins
-- **Check health**: Run `:checkhealth` to verify installation
-- **Clean lock file**: Remove `lazy-lock.json` to regenerate with latest plugin versions
-- **Dashboard**: Access via `<leader>h` or automatically on startup
+- Play/Pause, Next, Previous, Stop
+- Volume Up/Down, Mute/Unmute
 
-## 🤝 Contributing
+**Brightness:**
 
-Feel to fork, modify, and adapt this configuration to your needs. This is designed as a solid foundation for a productive Neovim setup.
+- Brightness Up/Down
 
-## 📄 License
+**Screenshot:**
 
-This configuration is provided as-is for educational and personal use. Feel free to adapt it for your own workflow.
+- Full Screen, Selection, Copy to Clipboard
 
+**System:**
+
+- Toggle WiFi, Toggle Bluetooth
+- Night Light (redshift), Reset Night Light
+- Kill Wayland
+
+**Functions:**
+
+- `pick()` - Opens power commands menu
+- `media()` - Opens media controls picker
+- `brightness_pick()` - Opens brightness picker
+
+### Todo/Notes Viewer (`lua/todo.lua`)
+
+Opens a notes file in a floating window.
+
+**Configuration:**
+
+```lua
+require("todo").setup({
+    target_file = "~/notes/Markdowns/example.md",
+    border = "single",
+    width = 0.8,
+    height = 0.8,
+    position = "center",
+}, "<leader>td")
+```
+
+**Functions:**
+
+- `setup(opts, keybind)` - Configure todo viewer
+- `open()` - Open with default options
+
+### Screenshot (`lua/screenshot.lua`)
+
+Screenshot capture using `grim` and `slurp`.
+
+**Features:**
+
+- Window/Selection/Fullscreen capture
+- Save to file or copy to clipboard
+
+**Functions:**
+
+- `pick()` - Opens screenshot options
+- `capture_window()`, `capture_selection()`, `capture_fullscreen()`
+- `capture_window_clipboard()`, etc.
+
+### Text Browser (`lua/text-browser.lua`)
+
+w3m-based terminal web browser in Neovim.
+
+**Functions:**
+
+- `browse(url?)` - Open URL or prompt for URL
+- `back()`, `forward()`, `reload()`, `home()`
+
+## Plugins
+
+| Plugin                    | Description                                     |
+| ------------------------- | ----------------------------------------------- |
+| **snacks.nvim**           | UI framework (picker, dashboard, notifications) |
+| **telescope.nvim**        | Fuzzy finder                                    |
+| **nvim-lspconfig**        | LSP client configuration                        |
+| **mason.nvim**            | LSP server installer                            |
+| **nvim-treesitter**       | Syntax highlighting                             |
+| **conform.nvim**          | Code formatting                                 |
+| **gitsigns.nvim**         | Git integration                                 |
+| **noice.nvim**            | Notification UI                                 |
+| **lualine.nvim**          | Statusline                                      |
+| **bufferline.nvim**       | Buffer/tab management                           |
+| **catppuccin**            | Color scheme (Mocha theme)                      |
+| **mini.ai**               | textobject                                      |
+| **mini.pairs**            | Auto-pairs                                      |
+| **Comment.nvim**          | Commenting                                      |
+| **indent-blankline.nvim** | Indentation guides                              |
+| **LuaSnip**               | Snippets                                        |
+| **nvim-cmp**              | Autocompletion                                  |
+| **trouble.nvim**          | Diagnostics viewer                              |
+| **yazi.nvim**             | File manager                                    |
+| **oil.nvim**              | File explorer                                   |
+| **which-key.nvim**        | Keybinding hints                                |
+| **lazydev.nvim**          | Lazy.nvim helper                                |
+| **plenary.nvim**          | Utility functions                               |
+| **markdown.nvim**         | Markdown support                                |
+| **image.nvim**            | Image viewer                                    |
+
+## Directory Structure
+
+```
+lua/
+├── core/
+│   ├── options.lua     # Editor settings
+│   └── keymaps.lua    # Global keybindings
+├── plugins/           # Plugin configurations (35+ files)
+├── app-launcher.lua   # Application launcher
+├── fuzzy.lua          # Fuzzy finder
+├── git.lua            # Git integration
+├── git-branch.lua     # Branch switcher
+├── git-commit.lua     # Git commit
+├── power-commands.lua # System controls
+├── screenshot.lua     # Screenshot utility
+├── text-browser.lua  # w3m browser
+├── todo.lua          # Notes viewer
+└── web-search.lua    # Web search
+```
+
+## Theme
+
+Using **Catppuccin** with the Mocha flavor. The configuration includes:
+
+- Transparent background
+- Custom statusline integration
+- Syntax highlighting overrides
+
+## License
+
+MIT

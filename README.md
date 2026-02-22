@@ -32,7 +32,7 @@ Sharingan provides an enhanced "vision" for developers with:
 
 - Neovim 0.10+
 - Linux with Wayland
-- [LazyVim](https://lazyvim.tech/) starter
+- [LazyVim](https://lazyvim.org/) starter
 - Dependencies: `w3m`, `grim`, `slurp`, `brightnessctl`, `wpctl`, `playerctl`, `maim`, `xclip`, `nmcli`, `rfkill`, `redshift`
 
 ## Installation

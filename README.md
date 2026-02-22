@@ -6,6 +6,15 @@
 ![Lua](https://img.shields.io/badge/Lua-5.1+-2C2D72?style=flat&logo=lua)
 ![LazyVim](https://img.shields.io/badge/LazyVim-15+-57A143?style=flat)
 
+## Screenshots
+
+![Application Launcher](assest/screenshot_2026-01-27_19-11-29.png)
+![Fuzzy Finder](assest/screenshot_2026-01-27_19-12-24.png)
+![Git Integration](assest/screenshot_2026-01-27_19-12-42.png)
+![Power Commands](assest/screenshot_2026-02-14_15-27-23.png)
+![Text Browser](assest/screenshot_2026-02-14_15-28-00.png)
+![Fullscreen Screenshot](assest/fullscreen_2026-02-14_14-52-00.png)
+
 ## Overview
 
 Sharingan provides an enhanced "vision" for developers with:

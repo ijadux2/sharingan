@@ -42,7 +42,7 @@ Sharingan provides an enhanced "vision" for developers with:
 mv ~/.config/nvim ~/.config/nvim.bak
 
 # Clone Sharingan
-git clone https://github.com/yourusername/sharingan ~/.config/nvim
+git clone https://github.com/ijadux2/sharingan ~/.config/nvim
 
 # Open Neovim and let LazyVim install plugins
 nvim

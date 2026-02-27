@@ -32,4 +32,7 @@ return {
 		lazy = false,
 		priority = 1000,
 	},
+	{
+		"ThePrimeagen/vim-be-good",
+	},
 }

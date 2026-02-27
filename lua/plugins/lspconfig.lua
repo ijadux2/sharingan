@@ -50,6 +50,20 @@ return {
 		})
 		vim.lsp.enable("nim_langserver")
 
+		vim.lsp.config("qmlls", {
+			cmd = { "/home/jadu/.local/share/nvim/mason/packages/qmlls/qmlls" },
+			filetypes = { "qml", "qmljs" },
+			root_markers = { ".git", "*.pro", "CMakeLists.txt", "qmldir" },
+			settings = {
+				["Qml.importPaths"] = {
+					"/usr/lib/qt6/qml",
+					"/usr/lib/qt/qml",
+				},
+			},
+			capabilities = capabilities,
+		})
+		vim.lsp.enable("qmlls")
+
 		for server, server_opts in pairs(opts.servers) do
 			local config = vim.tbl_deep_extend("force", {
 				capabilities = capabilities,

@@ -35,6 +35,11 @@ vim.keymap.set("n", "<leader>gl", function()
 	require("git").log()
 end, { desc = "Git Log" })
 
+-- Emoji Picker
+vim.keymap.set("n", "<S-e>", function()
+	require("emoji").pick()
+end, { desc = "Emoji Picker" })
+
 -- Fuzzy Finder
 vim.keymap.set("n", "<leader>f", function()
 	require("fuzzy").pick()

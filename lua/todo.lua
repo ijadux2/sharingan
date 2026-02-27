@@ -98,7 +98,7 @@ local function open_floating_file(opts)
 end
 
 local function setup_user_commands(opts)
-	opts = vim.tbl_deep_extend("force", default_opts, opts)
+	opts = vim.tbl_deep_extend("force", default_opts, opts or {})
 
 	vim.api.nvim_create_user_command("Td", function()
 		open_floating_file(opts)
@@ -106,7 +106,7 @@ local function setup_user_commands(opts)
 end
 
 M.setup = function(opts, keybind)
-	opts = vim.tbl_deep_extend("force", default_opts, opts)
+	opts = vim.tbl_deep_extend("force", default_opts, opts or {})
 	setup_user_commands(opts)
 
 	if keybind then

@@ -23,20 +23,22 @@ return {
 			enabled = true,
 			preset = {
 				header = [[
- ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
- ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
- ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
- ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
- ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
- ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═�
+╭────────────────────────────────────────────────────────────╮
+│  ╭─╮╭─╮                                                    │
+│  ╰─╯╰─╯  Sharingan.nvim  v0.0.1                            │
+│  █ ▘▝ █  built to defeat emacs :} hehe                     │
+│   ▔▔▔▔                                                     │
+│  this is not the power of your creation                    │
+│  built by ijadux2 {kumar}                                  │
+╰────────────────────────────────────────────────────────────╯
 ]],
 				keys = {
 					{ icon = "󰈆 ", key = "f", desc = "Find file", action = ":lua Snacks.picker.files()" },
 					{ icon = "󰈔 ", key = "r", desc = "Recent", action = ":lua Snacks.picker.oldfiles()" },
-					{ icon = "󰊄 ", key = "g", desc = "Grep", action = ":lua Snacks.picker.grep()" },
-					{ icon = "NEW FILE", key = "n", desc = "New file", action = ":ene | startinsert" },
-					{ icon = "󰀵 ", key = "l", desc = "Lazy", action = ":Lazy" },
-					{ icon = "EXIT LOL ", key = "q", desc = "Quit", action = ":qa" },
+					{ icon = " ", key = "g", desc = "Grep", action = ":lua Snacks.picker.grep()" },
+					{ icon = " ", key = "n", desc = "New file", action = ":ene | startinsert" },
+					{ icon = " ", key = "l", desc = "Lazy", action = ":Lazy" },
+					{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 				},
 			},
 			sections = {

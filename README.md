@@ -8,12 +8,13 @@
 
 ## Screenshots
 
-![Application Launcher](assest/screenshot_2026-01-27_19-11-29.png)
 ![Fuzzy Finder](assest/screenshot_2026-01-27_19-12-24.png)
 ![Git Integration](assest/screenshot_2026-01-27_19-12-42.png)
 ![Power Commands](assest/screenshot_2026-02-14_15-27-23.png)
 ![Text Browser](assest/screenshot_2026-02-14_15-28-00.png)
 ![Fullscreen Screenshot](assest/fullscreen_2026-02-14_14-52-00.png)
+
+![dashboard](./assest/screenshot_2026-02-27_18-56-41.png)
 
 ## Overview
 

@@ -27,6 +27,7 @@ Sharingan provides an enhanced "vision" for developers with:
 - Text-based web browser in Neovim
 - Screenshot utilities
 - Todo/notes viewer
+- supports Tangle {build your source-code more descriptive and looks good with markdown}
 
 ## Requirements
 
